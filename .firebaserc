@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "buyappcompradores": {
+      "hosting": {
+        "app": [
+          "buyappcompradores"
+        ]
+      }
+    }
+  }
+}

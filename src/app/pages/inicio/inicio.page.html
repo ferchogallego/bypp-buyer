@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Inicio Compradores</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <h3 class="ion-text-center">Iniciar Sesión</h3>
+    <div class="ion-text-center logo">
+        <img src="../../../assets/img/its.png" alt="" width="200">
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input type="email" formControlName="email" [class.is-invalid]="emailNoValido"></ion-input>
+                <small *ngIf="emailNoValido">Ingrese un email válido</small>
+            </ion-item>
+            <ion-item *ngIf="viewPass == false">
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password" [class.is-invalid]="passwordNoValido"></ion-input>
+                <small *ngIf="passwordNoValido">La contraseña debe ser de 8 caracteres mínimo.</small>
+                <ion-icon color="primary" name="eye-off" slot="end" (click)="togglePasswordModeTrue()"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="viewPass == true">
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="text" formControlName="password" [class.is-invalid]="passwordNoValido"></ion-input>
+                <small *ngIf="passwordNoValido">La contraseña debe ser de 8 caracteres mínimo.</small>
+                <ion-icon color="primary" name="eye" slot="end" (click)="togglePasswordModeFalse()"></ion-icon>
+            </ion-item>
+            <ion-button type="submit" expand="block" class="ing">
+                Ingresar
+            </ion-button>
+        </ion-list>
+    </form>
+    <ion-list>
+        <a href="" class="forgot">Olvidó su contraseña?</a>
+        <ion-button class="cuenta" expand="block" fill="outline" type="submit" (click)="onClick()">
+            Crear cuenta
+        </ion-button>
+    </ion-list>
+    <ion-row>
+        <ion-col class="ion-text-center">
+            <a routerLink="/slides" class="tutor">¿Como comprar en BuyApp?</a>
+        </ion-col>
+    </ion-row>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/request"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Subcategorías</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+    <ion-list>
+        <ion-item detail *ngFor="let subcategoria of subcategorias" (click)="loadRequest(subcategoria.nombre)">
+            <ion-thumbnail slot="start">
+                <img [src]="subcategoria.imagen" alt="">
+            </ion-thumbnail>
+            <div class="inf">
+                <label>Subcategoría: </label>
+                <p><b>{{subcategoria.nombre | titlecase}}</b></p>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

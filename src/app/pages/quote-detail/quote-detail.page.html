@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Detalle de la cotización</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item *ngIf="marcador == true">
+        <ion-badge color="secondary">
+            <ion-icon name="notifications-outline"></ion-icon> Preseleccionada
+        </ion-badge>
+        <ion-thumbnail slot="end" (click)="sellerDataView(vendedor)">
+            <img src="../../../assets/img/seller.png" alt="">
+        </ion-thumbnail>
+    </ion-item>
+    <ion-item class="ion-text-center">
+        <img [src]="imagen" class="img-responsive" width="200" id="imgCard">
+        <h3>Precio total: <b>{{total | currency}}</b></h3>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="bookmarks"></ion-icon>
+        <p>Precio unidad: <b>{{precioUn | currency}}</b></p>
+        <p>Precio del flete: <b>{{flete | currency}}</b></p>
+        <ion-icon slot="end" name="flag"></ion-icon>
+    </ion-item>
+    <div class="ion-padding">
+        <p>
+            <ion-icon slot="star" name="checkbox-outline"></ion-icon>
+            Producto: <b>{{producto | titlecase}}</b>
+        </p>
+        <p>
+            <ion-icon slot="star" name="list-outline"></ion-icon>
+            <b> {{cantidad}}</b> unid <b>{{producto | titlecase}}</b> - <b>{{marca | titlecase}}</b> {{referencia}}
+        </p>
+        <p>
+            <ion-icon slot="star" name="location-outline"></ion-icon>
+            Entrega: <b> {{fecha | date}}</b>
+        </p>
+        <p>
+            <ion-icon slot="star" name="compass-outline"></ion-icon>
+            Dirección: <b>{{direccion}} </b> - {{ciudad | titlecase}}<b>   ({{pais | titlecase}})</b>
+        </p>
+        <p id="desc">{{descripcion}}</p>
+    </div>
+</ion-content>
+<ion-tabs>
+    <ion-tab-bar slot="bottom" color="primary">
+        <ion-tab-button>
+            <ion-icon name="information-circle"></ion-icon>
+            <ion-label>Acerca de</ion-label>
+        </ion-tab-button>
+        <ion-tab-button>
+            <ion-icon name="card-outline" (click)="viewDataQuote(idCotizacion, idSolicitud, comprador)"></ion-icon>
+            <ion-label>Preseleccionar</ion-label>
+        </ion-tab-button>
+        <ion-tab-button>
+            <ion-icon name="newspaper-outline" (click)="quoteSelected(idCotizacion, idSolicitud, vendedor)"></ion-icon>
+            <ion-label>Adjudicar</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

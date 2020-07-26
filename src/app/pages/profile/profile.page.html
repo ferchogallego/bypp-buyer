@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Perfil de Usuario</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <form [formGroup]="editProfilForm" (ngSubmit)="editProfileUser(editProfilForm.value)">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Nombre de usuario</ion-label>
+                <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Teléfono de contacto</ion-label>
+                <ion-input type="text" formControlName="phone"></ion-input>
+            </ion-item>
+            <ion-item>
+                <input type="file" formControlName="imgProfile" (change)="handleImage($event)" name="file" id="file" class="fileInput" />
+                <label for="file"><img src="../../../assets/img/perfil.png" width="70"  alt="">Logo / Imagen</label>
+            </ion-item>
+            <ion-button type="submit" expand="block" class="ing">
+                Actualizar perfil
+            </ion-button>
+        </ion-list>
+    </form>
+</ion-content>

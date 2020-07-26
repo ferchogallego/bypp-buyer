@@ -1,0 +1,136 @@
+<app-header titulo="Registro Comprador"></app-header>
+<ion-content class="ion-padding">
+    <form *ngIf="person == true" [formGroup]="registerPerson" (ngSubmit)="onRegisterPerson(registerPerson.value)">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Nombre Completo</ion-label>
+                <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo de documento</ion-label>
+                <ion-select placeholder="Seleccione" formControlName="document">
+                    <ion-select-option value="cedula">Cédula de ciudadanía</ion-select-option>
+                    <ion-select-option value="extranjeria">Cédula de extranjería</ion-select-option>
+                    <ion-select-option value="pasaporte">Pasaporte</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Número de documento</ion-label>
+                <ion-input type="text" formControlName="numDocument" [class.is-invalid]="numDocumentPerNoValido"></ion-input>
+                <small *ngIf="numDocumentPerNoValido">El documento debe tener 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-item>
+                <input type="file" formControlName="imgDocument" (change)="handleImage($event)" name="file" id="file" class="fileInput" />
+                <label for="file"><ion-icon size="large" name="camera-outline"></ion-icon> Subir imagen / pdf del documento</label>
+                <ion-thumbnail slot="end">
+                    <ion-img [src]="imageSrc"></ion-img>
+                </ion-thumbnail>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Dirección</ion-label>
+                <ion-input type="text" formControlName="address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select placeholder="Seleccione" multiple="false" formControlName="country" (ionChange)="handleCountry($event.target.value)">
+                    <ion-select-option *ngFor="let item of countries" value="{{item.id}}">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Departamento / estado</ion-label>
+                <ion-select placeholder="Seleccione" formControlName="state">
+                    <ion-select-option *ngFor="let departamentos of depart" value="{{departamentos.id}}">{{departamentos.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Ciudad</ion-label>
+                <ion-input type="text" formControlName="city" [class.is-invalid]="cityNoValido"></ion-input>
+                <small *ngIf="phoneNoValido">Debe ingresar una ciudad válida.</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Celular</ion-label>
+                <ion-input type="text" formControlName="phone" [class.is-invalid]="phonePerNoValido"></ion-input>
+                <small *ngIf="phonePerNoValido">El teléfono debe tener 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input type="email" formControlName="email" [class.is-invalid]="emailPerNoValido"></ion-input>
+                <small *ngIf="emailNoValido">Ingrese un email válido</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="email" formControlName="password" [class.is-invalid]="passwordPerNoValido"></ion-input>
+                <small *ngIf="passwordPerNoValido">La contraseña debe ser de 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-button class="enviar" expand="block" type="submit">
+                Registrarse
+            </ion-button>
+        </ion-list>
+    </form>
+    <form *ngIf="person != true" [formGroup]="registerCompany" (ngSubmit)="onRegisterCompany(registerCompany.value)">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Nombre de la empresa</ion-label>
+                <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Número de Nit</ion-label>
+                <ion-input type="number" formControlName="numNit" [class.is-invalid]="numNitNoValido"></ion-input>
+                <small *ngIf="numNitNoValido">El Nit debe tener 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Persona de contacto</ion-label>
+                <ion-input type="text" formControlName="representative"></ion-input>
+            </ion-item>
+            <ion-item>
+                <input type="file" formControlName="imgNit" (change)="handleImage($event)" name="file" id="file" class="fileInput" />
+                <label for="file"><ion-icon size="large" name="camera-outline"></ion-icon> Subir imagen / pdf del Nit</label>
+                <ion-thumbnail slot="end">
+                    <ion-img [src]="imageSrc"></ion-img>
+                </ion-thumbnail>
+            </ion-item>
+            <ion-item *ngIf="fileName">
+                <ion-badge color="secondary">{{fileName}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Dirección</ion-label>
+                <ion-input type="text" formControlName="address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select placeholder="Seleccione" multiple="false" formControlName="country" (ionChange)="handleCountry($event.target.value)">
+                    <ion-select-option *ngFor="let item of countries" value="{{item.id}}">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Departamento / estado</ion-label>
+                <ion-select placeholder="Seleccione" formControlName="state">
+                    <ion-select-option *ngFor="let departamentos of depart" value="{{departamentos.id}}">{{departamentos.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Ciudad</ion-label>
+                <ion-input type="text" formControlName="city" [class.is-invalid]="cityNoValido"></ion-input>
+                <small *ngIf="phoneNoValido">Debe ingresar una ciudad válida.</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Celular</ion-label>
+                <ion-input type="text" formControlName="phone" [class.is-invalid]="phoneNoValido"></ion-input>
+                <small *ngIf="phoneNoValido">El documento debe tener 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input type="email" formControlName="email" [class.is-invalid]="emailNoValido"></ion-input>
+                <small *ngIf="emailNoValido">Ingrese un email válido</small>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password" [class.is-invalid]="passwordNoValido"></ion-input>
+                <small *ngIf="passwordNoValido">La contraseña debe ser de 8 caracteres mínimo.</small>
+            </ion-item>
+            <ion-button class="enviar" expand="block" type="submit">
+                Registro Comprador Empresa
+            </ion-button>
+        </ion-list>
+    </form>
+</ion-content>

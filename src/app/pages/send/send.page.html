@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-title>Tipo de solicitud</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="cont">
+        <label class="ion-padding ppal">¿Qué deseas solicitar?</label>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>Solicitar</ion-card-subtitle>
+                        <ion-card-title>Producto</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <img src="../../../assets/icon/producto.png" alt="">
+                        <ion-button expand="block" fill="outline" (click)="selectFormRequest('producto')">Producto</ion-button>
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-col>
+            <ion-col size="6">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>Solicitar</ion-card-subtitle>
+                        <ion-card-title>Servicio</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <img src="../../../assets/icon/servicio.png" alt="">
+                        <ion-button expand="block" fill="outline" (click)="selectFormRequest('servicio')">Servicio</ion-button>
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

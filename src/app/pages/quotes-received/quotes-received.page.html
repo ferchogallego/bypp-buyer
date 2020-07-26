@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/empresa"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons *ngIf="requestCondition == true" slot="end" (click)="alertRequestClose(comprador)">
+            <ion-icon size="large" name="close-circle-outline"></ion-icon>
+        </ion-buttons>
+        <ion-buttons *ngIf="requestCondition == false" slot="end" (click)="alertOpenRequest(comprador)">
+            <ion-icon size="large" name="book-outline"></ion-icon>
+        </ion-buttons>
+        <ion-title>Cotizaciones Recibidas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item *ngIf="requestCondition == false">
+        <ion-icon slot="start" name="alert-outline"></ion-icon>
+        <h4>Solicitud Cerrada</h4>
+    </ion-item>
+    <ion-item *ngIf="requestCondition == true">
+        <ion-icon slot="start" name="book-outline"></ion-icon>
+        <h4>Solicitud Abierta</h4>
+    </ion-item>
+    <ion-card *ngFor="let quote of listQuote">
+        <ion-item>
+            <ion-thumbnail slot="start">
+                <ion-img [src]="quote.imagen"></ion-img>
+            </ion-thumbnail>
+            <ion-label>{{quote.producto}}</ion-label>
+            <ion-label>{{quote.fecha | date}}</ion-label>
+            <ion-button fill="outline" slot="end" (click)="openQuoteDetail(quote.id)">Ver</ion-button>
+        </ion-item>
+
+        <ion-card-content>
+            {{quote.descripcion}}
+        </ion-card-content>
+    </ion-card>
+</ion-content>

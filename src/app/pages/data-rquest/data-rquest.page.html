@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-button slot="end">
+            <ion-icon name="trash-bin-sharp"></ion-icon>
+        </ion-button>
+        <ion-title autocapitalize>Solicitud: <b>{{tipo}}</b></ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <form [formGroup]="sendProduct" (ngSubmit)="sendRequestProduct(sendProduct.value)">
+        <ion-list>
+            <ion-item>
+                <ion-textarea formControlName="descripcion" placeholder="Describe tu producto..."></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Indica el nombre del producto</ion-label>
+                <ion-input formControlName="producto" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Referencia del producto (opcional)</ion-label>
+                <ion-input formControlName="referencia" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Marca producto (opcional)</ion-label>
+                <ion-input type="text" formControlName="marca"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Cantidad</ion-label>
+                <ion-input type="number" formControlName="cantidad"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Dirección de entrega</ion-label>
+                <ion-input type="text" formControlName="direccion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ciudad</ion-label>
+                <ion-select placeholder="Seleccione" formControlName="ciudad">
+                    <ion-select-option value="bogota">Bogotá D.C</ion-select-option>
+                    <ion-select-option value="pereira">Pereira</ion-select-option>
+                    <ion-select-option value="medellin">Medellín</ion-select-option>
+                    <ion-select-option value="cali">Cali</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>País</ion-label>
+                <ion-select placeholder="Seleccione" formControlName="pais">
+                    <ion-select-option value="colombia">Colombia</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Fecha de entrega</ion-label>
+                <ion-datetime formControlName="fecha" displayFormat="MM DD YY" placeholder="Seleccione fecha"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <input formControlName="imagen" type="file" name="file" id="file" class="fileInput" (change)="handleImage($event)" />
+                <label for="file"><ion-icon class="btn btn-primary" size="large" name="camera-outline"></ion-icon> Imagen del producto</label>
+            </ion-item>
+            <ion-button type="submit" expand="block" class="ing">
+                Enviar solicitud
+            </ion-button>
+        </ion-list>
+    </form>
+</ion-content>

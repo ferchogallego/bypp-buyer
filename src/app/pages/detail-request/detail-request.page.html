@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Detalle de solicitud</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item>
+        <div class="imgBox">
+            <img [src]="imagen" class="img-responsive" id="imgCard" (click)="fullScreenImage(imagen)">
+        </div>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="bookmarks"></ion-icon>
+        <b>{{categoria | titlecase}}</b> - {{subcategoria | titlecase}}
+        <ion-icon slot="end" name="flag"></ion-icon>
+    </ion-item>
+    <div class="ion-padding">
+        <p>
+            <ion-icon slot="star" name="checkbox-outline"></ion-icon>
+            Producto: <b>{{producto | titlecase}}</b>
+        </p>
+        <p>
+            <ion-icon slot="star" name="list-outline"></ion-icon>
+            <b> {{cantidad}}</b> unid <b>{{producto | titlecase}}</b> - <b>{{marca | titlecase}}</b> {{referencia}}
+        </p>
+        <p>
+            <ion-icon slot="star" name="location-outline"></ion-icon>
+            Entrega: {{fecha | date}} en <b>{{ciudad | titlecase}}</b>
+        </p>
+        <p id="desc">{{descripcion}}</p>
+    </div>
+</ion-content>

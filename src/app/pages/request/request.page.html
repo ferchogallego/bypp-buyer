@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/empresa"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Crear solicitud</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+    <ion-text class="sector">¿En que sector se ubica tu producto o servicio?</ion-text>
+    <ion-label>
+        <hr>
+    </ion-label>
+    <ion-item class="ion-text-center" *ngFor="let sector of sectors" @slideinleft>
+        <ion-label (click)="sectorSelected($event, sector.nombre)"> {{sector.nombre |titlecase}}</ion-label>
+    </ion-item>
+</ion-content>

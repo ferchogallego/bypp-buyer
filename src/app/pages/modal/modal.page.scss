@@ -1,0 +1,36 @@
+ion-card {
+    margin-top: 4rem;
+    overflow: unset !important;
+}
+
+ion-card {
+    height: 240px;
+    width: 90%;
+}
+
+.slide-image {
+    width: 100px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -50px;
+}
+
+ion-card-header {
+    position: relative;
+    top: -50px;
+}
+
+ion-card-content {
+    position: relative;
+    top: -50px;
+}
+
+.avatar {
+    width: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

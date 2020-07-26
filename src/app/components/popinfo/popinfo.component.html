@@ -1,0 +1,7 @@
+<ion-list class="ion-padding">
+    <ion-label> Seleccione categoría </ion-label>
+    <hr>
+    <ion-item *ngFor="let item of cat" detail (click)="onClick(item)">
+        <ion-label> {{item}} </ion-label>
+    </ion-item>
+</ion-list>

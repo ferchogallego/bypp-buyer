@@ -1,0 +1,46 @@
+<ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+        <ion-toolbar color="primary" class="ion-padding">
+            <ion-thumbnail *ngIf="load == true" slot="start">
+                <img [src]="imgPerfil" alt="">
+            </ion-thumbnail>
+            <ion-thumbnail *ngIf="load == false" slot="start">
+                <img src="../../../assets/img/user.svg" alt="">
+            </ion-thumbnail>
+            <ion-text class="ion-padding">Bienvenido:</ion-text><br>
+            <ion-text class="ion-padding">{{titulo | titlecase}}</ion-text><br>
+            <ion-text class="ion-padding"><b>Empresa</b></ion-text>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle>
+                <ion-item [routerLink]="['/request']" routerLinkActive="router-link-active">
+                    <ion-icon slot="start" name="pricetags-outline"></ion-icon>
+                    Solicitud de compra
+                    <ion-badge slot="end" color="primary" mode="ios">{{cant}}</ion-badge>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-item [routerLink]="['/list-quotes']" routerLinkActive="router-link-active">
+                <ion-icon slot="start" name="card-outline"></ion-icon>
+                Cotizaciones recibidas
+                <ion-badge slot="end" color="dark" mode="ios">{{rquest}}</ion-badge>
+            </ion-item>
+            <ion-item [routerLink]="['/history-request']" routerLinkActive="router-link-active">
+                <ion-icon slot="start" name="list-outline"></ion-icon>
+                Historial de solicitudes
+            </ion-item>
+            <ion-item [routerLink]="['/profile']" routerLinkActive="router-link-active">
+                <ion-icon slot="start" name="person-circle-outline"></ion-icon>Mi Perfil
+            </ion-item>
+            <ion-item *ngIf="vendedor">
+                <ion-icon slot="start" name="people-outline"></ion-icon>
+                Compradores
+            </ion-item>
+            <ion-item>
+                <ion-icon slot="start" name="exit-outline"></ion-icon>
+                Cerrar sesión
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
